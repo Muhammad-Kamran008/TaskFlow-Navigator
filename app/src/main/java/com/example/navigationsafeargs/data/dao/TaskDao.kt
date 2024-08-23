@@ -13,8 +13,8 @@ interface TaskDao {
     suspend fun insertTaskItem(taskItem: TaskItem)
 
     @Query("SELECT * FROM TaskItem ORDER BY id DESC")
-    //fun getAllTasksLiveData(): LiveData<List<TaskItem>> // Return LiveData for observing changes
-    fun getAllTasksFlow(): Flow<List<TaskItem>>
+    fun getAllTasksLiveData(): LiveData<List<TaskItem>>
+    //fun getAllTasksFlow(): Flow<List<TaskItem>>
 
     @Delete
     suspend fun deleteItem(taskItem: TaskItem)

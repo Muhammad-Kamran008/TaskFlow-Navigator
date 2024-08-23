@@ -52,15 +52,15 @@ class ListOfNoteFragment : Fragment() {
     }
 
     private fun observeViewModel() {
-//        viewModel.tasks.observe(viewLifecycleOwner) { tasks ->
-//            taskAdapter.updateItems(tasks)
-//        }
-
-        lifecycleScope.launch {
-            viewModel.tasks.collect { tasks ->
-                taskAdapter.updateItems(tasks)
-            }
+        viewModel.tasks.observe(viewLifecycleOwner) { tasks ->
+            taskAdapter.updateItems(tasks)
         }
+
+//        lifecycleScope.launch {
+//            viewModel.tasks.collect { tasks ->
+//                taskAdapter.updateItems(tasks)
+//            }
+//        }
     }
 
     fun deleteItem(taskItem: TaskItem) {

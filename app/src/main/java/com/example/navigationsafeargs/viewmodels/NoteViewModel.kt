@@ -17,8 +17,8 @@ class NoteViewModel(
 ) : ViewModel() {
 
 
-    // val tasks: LiveData<List<TaskItem>> = taskRepository.tasks
-    val tasks: StateFlow<List<TaskItem>> = taskRepository.tasks
+     val tasks: LiveData<List<TaskItem>> = taskRepository.tasks
+    //val tasks: StateFlow<List<TaskItem>> = taskRepository.tasks
 
     fun insertTask(taskItem: TaskItem) {
         viewModelScope.launch(Dispatchers.IO) {

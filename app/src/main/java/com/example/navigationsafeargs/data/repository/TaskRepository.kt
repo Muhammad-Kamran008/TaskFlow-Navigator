@@ -12,17 +12,17 @@ import kotlinx.coroutines.withContext
 
 class TaskRepository(private val taskDao: TaskDao) {
 
-    // val tasks = taskDao.getAllTasksLiveData()
+    val tasks = taskDao.getAllTasksLiveData()
 
-    val tasks: StateFlow<List<TaskItem>> = MutableStateFlow(emptyList())
+   // val tasks: StateFlow<List<TaskItem>> = MutableStateFlow(emptyList())
 
-    init {
-        CoroutineScope(Dispatchers.IO).launch {
-            taskDao.getAllTasksFlow().collect { taskList ->
-                (tasks as MutableStateFlow).value = taskList
-            }
-        }
-    }
+//    init {
+//        CoroutineScope(Dispatchers.IO).launch {
+//            taskDao.getAllTasksFlow().collect { taskList ->
+//                (tasks as MutableStateFlow).value = taskList
+//            }
+//        }
+//    }
 
     suspend fun insertTask(taskItem: TaskItem) {
         withContext(Dispatchers.IO) {
