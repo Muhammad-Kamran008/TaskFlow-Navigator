@@ -1,10 +1,6 @@
 package com.example.navigationsafeargs.di
-
-
-
 import android.app.Application
 import org.koin.dsl.module
-
 import com.example.navigationsafeargs.data.db.TaskDatabase
 import com.example.navigationsafeargs.data.repository.TaskRepository
 import com.example.navigationsafeargs.viewmodels.NoteViewModel
@@ -20,3 +16,5 @@ val appModule = module {
 
     viewModel { NoteViewModel(get()) }
 }
+
+

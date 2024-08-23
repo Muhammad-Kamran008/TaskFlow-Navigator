@@ -4,7 +4,6 @@ plugins {
     alias(libs.plugins.jetbrains.kotlin.kapt)
     id("kotlin-parcelize")
     alias(libs.plugins.androidx.navigation.safeargs)
-  //  id("com.google.devtools.ksp")
 }
 
 android {
@@ -43,7 +42,6 @@ android {
 }
 
 dependencies {
-
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.appcompat)
     implementation(libs.material)
@@ -53,16 +51,12 @@ dependencies {
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
 
-
     implementation(libs.androidx.room.runtime)
     kapt(libs.androidx.room.compiler)
-
     implementation(libs.glide)
-
     implementation (libs.androidx.navigation)
     implementation (libs.androidx.navigation.ui)
     implementation(libs.androidx.room.ktx)
-
     implementation (libs.koin.android)
     implementation (libs.androidx.lifecycle.viewmodel.ktx)
     implementation (libs.kotlinx.coroutines.core)

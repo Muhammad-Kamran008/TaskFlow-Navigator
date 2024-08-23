@@ -37,14 +37,11 @@ class TaskAdapter(
             removeItem(position)
         }
 
-
-
         holder.binding.root.setOnClickListener {
             val action =
                 ListOfNoteFragmentDirections.actionMobileNavigationToAddNoteFragment(items[position])
             findNavController(it).navigate(action)
         }
-
     }
 
     override fun getItemCount(): Int {
