@@ -1,11 +1,11 @@
 package com.example.navigationsafeargs.ui.fragments
+
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.example.navigationsafeargs.R
 import android.text.TextUtils
-import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import com.example.navigationsafeargs.data.model.TaskItem
 import com.example.navigationsafeargs.databinding.FragmentAddNoteBinding
@@ -14,36 +14,27 @@ import com.example.navigationsafeargs.viewmodels.NoteViewModel
 import kotlinx.coroutines.DelicateCoroutinesApi
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
-import org.koin.androidx.viewmodel.ext.android.viewModel
 
-class AddNoteFragment : BaseFragment() {
+class AddNoteFragment : BaseFragment<FragmentAddNoteBinding,NoteViewModel>() {
     private var utaskItem: TaskItem? = null
-    private lateinit var addNoteBinding: FragmentAddNoteBinding
-    private val binding get() = addNoteBinding
 
-    private val viewModel: NoteViewModel by viewModel()
-
-    override fun onCreateView(
+    override fun inflateBinding(
         inflater: LayoutInflater,
-        container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View {
-
-        addNoteBinding = FragmentAddNoteBinding.inflate(layoutInflater, container, false)
-        return binding.root
+        container: ViewGroup?
+    ): FragmentAddNoteBinding {
+        return FragmentAddNoteBinding.inflate(inflater, container, false)
     }
 
     @OptIn(DelicateCoroutinesApi::class)
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-       // viewModel = ViewModelProvider(this)[NoteViewModel::class.java]
+        // viewModel = ViewModelProvider(this)[NoteViewModel::class.java]
 
         arguments?.let {
             utaskItem = AddNoteFragmentArgs.fromBundle(it).taskItem
             binding.etName.setText(utaskItem?.taskname ?: "")
             binding.etDescription.setText(utaskItem?.taskDescription ?: "")
         }
-
 
         binding.btnAdd.setOnClickListener {
             if (validation()) {

@@ -12,6 +12,11 @@
         <action
             android:id="@+id/action_mobile_navigation_to_addNoteFragment"
             app:destination="@id/addNoteFragment" />
+        <action
+            android:id="@+id/action_mobile_navigation_to_ListOfDeletedNoteFragment"
+            app:destination="@id/deletedNoteFragment" />
+
+
     </fragment>
 
     <fragment
@@ -28,6 +33,18 @@
             app:argType="com.example.navigationsafeargs.data.model.TaskItem"
             app:nullable="true"
             android:defaultValue="@null" />
+    </fragment>
+
+    <fragment
+
+        android:id="@+id/deletedNoteFragment"
+        android:name="com.example.navigationsafeargs.ui.fragments.ListOfDeletedNoteFragment"
+        android:label="Deleted Notes"
+        tools:layout="@layout/fragment_list_of_deleted_note">
+        <action
+            android:id="@+id/action_deletedNoteFragment_to_home_fragment"
+            app:destination="@id/home_fragment" />
+
     </fragment>
 
 </navigation>

@@ -7,13 +7,13 @@ import androidx.navigation.Navigation.findNavController
 import androidx.recyclerview.widget.RecyclerView
 import com.example.navigationsafeargs.data.model.TaskItem
 import com.example.navigationsafeargs.databinding.TaskItemBinding
-import com.example.navigationsafeargs.ui.fragments.ListOfNoteFragment
 import com.example.navigationsafeargs.ui.fragments.ListOfNoteFragmentDirections
 
 
 class TaskAdapter(
     private val items: MutableList<TaskItem>,
-    private val listOfNoteFragment: ListOfNoteFragment
+    private val onDeleteClick: (TaskItem) -> Unit
+
 ) : RecyclerView.Adapter<TaskAdapter.TaskViewHolder>() {
 
     class TaskViewHolder(val binding: TaskItemBinding) : RecyclerView.ViewHolder(binding.root)
@@ -30,11 +30,11 @@ class TaskAdapter(
 
     @SuppressLint("NotifyDataSetChanged")
     override fun onBindViewHolder(holder: TaskViewHolder, position: Int) {
+        val taskItem = items[position]
         holder.binding.titel.text = items[position].taskname
         holder.binding.descrepthion.text = items[position].taskDescription
         holder.binding.delete.setOnClickListener {
-            listOfNoteFragment.deleteItem(items[position])
-            removeItem(position)
+            onDeleteClick(taskItem)
         }
 
         holder.binding.root.setOnClickListener {
@@ -44,9 +44,11 @@ class TaskAdapter(
         }
     }
 
+
     override fun getItemCount(): Int {
         return items.size
     }
+
 
     private fun removeItem(position: Int) {
         items.removeAt(position)
@@ -59,6 +61,13 @@ class TaskAdapter(
         items.clear()
         items.addAll(newItems)
         notifyDataSetChanged()
+    }
+
+    fun deleteItem(taskItem: TaskItem) {
+        val position = items.indexOf(taskItem)
+        if (position != -1) {
+            removeItem(position)
+        }
     }
 
 }
